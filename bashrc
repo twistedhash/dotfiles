@@ -122,3 +122,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+source /home/loki/.dotfiles/bashrc.local

@@ -88,12 +88,14 @@ if [[ "${dotLink}" == "y" ]]; then
 		clr_red echo "...BASH.D LINK ALREADY EXISTS"
 	fi
 
-	if [ ! -d "$H"/.config ]; then
+	if [ -d "$H"/.config ]; then
 		mv "$H"/.config "$H"/.config.bak
 		clr_brown echo "...CONFIG FILES BACKUP CREATED"
 		ln -snf "$D"/config "$H"/.config
+		clr_red echo "...CONFIG LINKED"
 	else
-		clr_red echo "...CONFIG ALREADY LINKED"
+		ln -snf "$D"/config "$H"/.config
+		clr_red echo "...CONFIG LINKED"
 	fi
 
 	if [ ! -d "$H"/MEGAsync ] && [ -d "$W"/MEGAsync ]; then
@@ -205,7 +207,7 @@ if [[ ${installHomebrew} == "y" ]]; then
 		clr_brown echo "...INSTALLING HOMEBREW"
 		clr_escape
 		# shellcheck source=/dev/null
-		source "$H/.bash.d/brew"
+		source "$H/.bash.d/brew.sh"
 		installBrew
 		echo "${COMPLETE}"
 	fi
@@ -224,7 +226,7 @@ if [[ ${installMyPosh} == "y" ]]; then
 	clr_brown echo "...INSTALLING OH-MY-POSH"
 	clr_escape
 	# shellcheck source=/dev/null
-	source "$H"/.bash.d/posh-install
+	source "$H"/.bash.d/posh-install.sh
 	installOhMyPosh
 fi
 echo "${COMPLETE}"
