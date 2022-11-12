@@ -82,10 +82,11 @@ read -res dotLink
 if [[ "${dotLink}" == "y" ]]; then
 	clr_reverse clr_brown echo "...LINKING DOTFILES"
 
-	if [ ! -d "$H"/.bash.d ]; then
-		ln -snf "$D"/bash.d "$H"/.bash.d
-	else
+	if [ -d "$H"/.bash.d ]; then
 		clr_red echo "...BASH.D LINK ALREADY EXISTS"
+	else
+		ln -snf "$D"/bash.d "$H"/.bash.d
+		clr_green "...BASH.D LINKED"
 	fi
 
 	if [ -d "$H"/.config ]; then

@@ -2,7 +2,9 @@
 #
 # Docker Functions
 
-export DOCKER_HOST=tcp://localhost:2375
+#export DOCKER_HOST=tcp://localhost:2375
+alias docker='sudo docker'
+alias docker-compose='sudo docker-compose'
 
 function dbash() {
 	DOTS="${HOME}"/.dotfiles
